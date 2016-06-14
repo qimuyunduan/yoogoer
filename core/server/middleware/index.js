@@ -6,16 +6,10 @@ var bodyParser       = require('body-parser'),
     path             = require('path'),
     routes           = require('../routes'),
     utils            = require('../utils'),
-    busboy           = require('./busboy'),
 	uploadify        = require('uploadify'),
-	multerConfig     = require('../api').uploads,
-    cacheControl     = require('./cache-control'),
 	uuid             = require('node-uuid'),
 	helmet           = require('helmet'),
-    privateBlogging  = require('./private-blogging'),
-    serveSharedFile  = require('./serve-shared-file'),
-    spamPrevention   = require('./spam-prevention'),
-    uncapitalise     = require('./uncapitalise'),
+	favicon          = require('serve-favicon'),
 	cookieParser     = require('cookie-parser'),
 	session          = require('express-session'),
 	sessionStore     = require('connect-redis')(session),
@@ -23,14 +17,6 @@ var bodyParser       = require('body-parser'),
     middleware,
     setupMiddleware;
 
-
-
-middleware = {
-    busboy: busboy,
-    cacheControl: cacheControl,
-    spamPrevention: spamPrevention,
-    privateBlogging: privateBlogging
-};
 
 setupMiddleware  = function setupMiddleware(App) {
 
@@ -80,44 +66,13 @@ setupMiddleware  = function setupMiddleware(App) {
 
 	App.use(helmet());
 
-	// process file upload
-	uploadify(App,{
-		path:'/uploads',
-		fileKey:'myFile',
-		multer:multerConfig
-	});
-
     // Favicon
-    App.use(serveSharedFile('favicon.ico', 'image/x-icon', utils.ONE_DAY_S));
-
-	App.use('/js',express.static(path.join(corePath,'/server/views/js')));
-	App.use('/css',express.static(path.join(corePath,'/server/views/css')));
-	App.use('/themes',express.static(path.join(corePath,'/server/views/themes')));
-	App.use('/img',express.static(path.join(corePath,'/server/views/img')));
-	App.use('/uploadify',express.static(path.join(corePath,'/server/views/uploadify')));
-	App.use('/common', express.static(path.join(corePath, '/server/views/static')));
+	App.use(favicon(__dirname + '/public/favicon.ico'));
+	App.use('/img',express.static(path.join(corePath,'/server/views/images')));
 	App.use('/shared', express.static(path.join(corePath, '/shared')));
 	App.use('/res', express.static(contentPath));
 	App.use('/res/data', express.static(path.join(contentPath, '/data')));
 	App.use('/res/images', express.static(path.join(contentPath, '/images')));
-
-
-    // Check if password protected app
-    //App.use(privateBlogging.checkIsPrivate); // check if the app is protected
-    //App.use(privateBlogging.filterPrivateRoutes);
-
-    App.use(uncapitalise);
-
-
-
-
-
-    // ### Caching
-
-    App.use(cacheControl('public'));
-
-    App.use(routes.apiBaseUri, cacheControl('private'));
-
 
     // ### Routing
     // Set up API routes

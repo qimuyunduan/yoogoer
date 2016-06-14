@@ -2,7 +2,7 @@
   "name": "yoogoer",
   "version": "1.0.0",
   "description": "yoogoer is node project based on express",
-  "author": "blogme",
+  "author": "yoogoer",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "2.3.0",
@@ -24,11 +24,13 @@
     "jsonpath": "0.2.2",
     "lodash": "3.10.1",
     "moment": "2.11.2",
+    "mongoose": "^4.5.0",
     "morgan": "1.6.1",
     "multer": "^1.1.0",
     "node-uuid": "1.4.7",
     "nodemailer": "0.7.1",
-    "redis": "^2.5.3"
+    "redis": "^2.5.3",
+    "serve-favicon": "^2.3.0"
   },
   "devDependencies": {
     "browser-sync": "^2.10.1",
