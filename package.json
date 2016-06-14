@@ -1,0 +1,61 @@
+{
+  "name": "yoogoer",
+  "version": "1.0.0",
+  "description": "yoogoer is node project based on express",
+  "author": "blogme",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "2.3.0",
+    "bluebird": "2.10.2",
+    "body-parser": "1.14.2",
+    "busboy": "0.2.12",
+    "chalk": "1.1.1",
+    "compression": "1.6.1",
+    "connect-redis": "^3.0.2",
+    "cookie-parser": "^1.4.1",
+    "cookie-session": "1.2.0",
+    "express": "4.13.4",
+    "express-session": "^1.13.0",
+    "fs-extra": "0.26.5",
+    "glob": "5.0.15",
+    "hbs": "^4.0.0",
+    "helmet": "^2.1.0",
+    "html-to-text": "1.6.0",
+    "jsonpath": "0.2.2",
+    "lodash": "3.10.1",
+    "moment": "2.11.2",
+    "morgan": "1.6.1",
+    "multer": "^1.1.0",
+    "node-uuid": "1.4.7",
+    "nodemailer": "0.7.1",
+    "redis": "^2.5.3"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.10.1",
+    "del": "^2.2.0",
+    "file-loader": "^0.8.5",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-htmlmin": "^1.3.0",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-minify-css": "^1.2.2",
+    "gulp-nodemon": "^2.0.6",
+    "gulp-rev": "^6.0.1",
+    "gulp-rev-collector": "^1.0.2",
+    "gulp-uglify": "^1.5.1",
+    "gulp-watch": "^4.3.5",
+    "gulp-webpack": "^1.5.0",
+    "run-sequence": "^1.1.5",
+    "style-loader": "^0.13.0",
+    "url-loader": "^0.5.7"
+  },
+  "greenkeeper": {
+    "ignore": [
+      "bluebird",
+      "glob",
+      "lodash",
+      "nodemailer",
+      "validator"
+    ]
+  }
+}
