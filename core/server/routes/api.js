@@ -15,6 +15,8 @@ routes = function apiRoutes() {
 	///pc  routes
 
 	router.get("/", function (req, res) {
+		console.log("set session...");
+		req.session.views = 1;
 		res.render('index');
 
 	});
