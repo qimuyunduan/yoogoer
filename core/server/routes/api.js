@@ -15,15 +15,15 @@ routes = function apiRoutes() {
 	///pc  routes
 
 	router.get("/", function (req, res) {
-
+		res.render('index');
 
 	});
 	router.get("/index.html", function (req, res) {
-
+		res.render('index');
 	});
 	router.route("/index")
 		.get(function (req, res) {
-
+			res.render('index');
 		})
 		.post(function (req, res) {
 

@@ -65,7 +65,7 @@ setupMiddleware  = function setupMiddleware(App) {
 	App.use(helmet());
 
     // Favicon
-	App.use(favicon(__dirname + '/public/favicon.ico'));
+	App.use(favicon(path.join(__dirname,'../views/images/favicon.ico')));
 	App.use('/img',express.static(path.join(corePath,'/server/views/images')));
 	App.use('/shared', express.static(path.join(corePath, '/shared')));
 	App.use('/res', express.static(contentPath));

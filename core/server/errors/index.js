@@ -3,7 +3,6 @@ var _                          = require('lodash'),
     chalk                      = require('chalk'),
     path                       = require('path'),
     Promise                    = require('bluebird'),
-    hbs                        = require('express-hbs'),
     NotFoundError              = require('./not-found-error'),
     BadRequestError            = require('./bad-request-error'),
     InternalServerError        = require('./internal-server-error'),
@@ -256,84 +255,7 @@ errors = {
 
     renderErrorPage: function (statusCode, err, req, res, next) {
 
-        var self = this,
-            defaultErrorTemplatePath = path.resolve(getConfigModule().paths.hbsViews, 'user-error.hbs');
-
-        function parseStack(stack) {
-            if (!_.isString(stack)) {
-                return stack;
-            }
-
-            var stackRegex = /\s*at\s*(\w+)?\s*\(([^\)]+)\)\s*/i;
-
-            return (
-                stack
-                    .split(/[\r\n]+/)
-                    .slice(1)
-                    .map(function (line) {
-                        var parts = line.match(stackRegex);
-                        if (!parts) {
-                            return null;
-                        }
-
-                        return {
-                            function: parts[1],
-                            at: parts[2]
-                        };
-                    })
-                    .filter(function (line) {
-                        return !!line;
-                    })
-            );
-        }
-
-        // Render the error!
-        function renderErrorInt(errorView) {
-            var stack = null;
-
-            if (statusCode !== 404 && process.env.NODE_ENV !== 'production' && err.stack) {
-                stack = parseStack(err.stack);
-            }
-
-            res.status(statusCode).render((errorView || 'error'), {
-                message: err.message || err,
-                // We have to use code here, as it's the variable passed to the template
-                // And error templates can be customised... therefore this constitutes API
-                // In future I recommend we make this be used for a combo-version of statusCode & errorCode
-                code: statusCode,
-                // Adding this as being distinctly, the status code, as opposed to any other code see #6526
-                statusCode: statusCode,
-                stack: stack
-            }, function (templateErr, html) {
-                if (!templateErr) {
-                    return res.status(statusCode).send(html);
-                }
-                // There was an error trying to render the error page, output the error
-                self.logError(templateErr, 'errors.errors.errorWhilstRenderingError', 'errors.errors.errorTemplateHasError');
-
-                // And then try to explain things to the user...
-                // Cheat and output the error using handlebars escapeExpression
-                return res.status(500).send(
-                    '<h1>' + 'errors.errors.oopsErrorTemplateHasError' + '</h1>' +
-                    '<p>' + 'errors.errors.encounteredError' + '</p>' +
-                    '<pre>' + hbs.handlebars.Utils.escapeExpression(templateErr.message || templateErr) + '</pre>' +
-                    '<br ><p>' + 'errors.errors.whilstTryingToRender' + '</p>' +
-                    statusCode + ' ' + '<pre>'  + hbs.handlebars.Utils.escapeExpression(err.message || err) + '</pre>'
-                );
-            });
-        }
-
-        if (statusCode >= 500) {
-            this.logError(err, 'errors.errors.renderingErrorPage', 'errors.errors.caughtProcessingError');
-        }
-
-        // Are we admin? If so, don't worry about the user template
-        if ((res.isAdmin && req.user && req.user.id) || userErrorTemplateExists === true) {
-            return renderErrorInt();
-        }
-
-        // We're not admin and the template doesn't exist. Render the default.
-        return renderErrorInt(defaultErrorTemplatePath);
+   		console.log("errorCode" + statusCode +"....." +err);
     },
 
     error404: function (req, res, next) {

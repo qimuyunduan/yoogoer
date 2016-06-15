@@ -1,9 +1,4 @@
 var _            = require('lodash'),
-	getFileNames = require('./getFileNames'),
-	moment       = require('./moment'),
-	checkUser    = require('./userPassService'),
-	filters      = require('./filter'),
-	postProcess  = require('./postProcess'),
     utils,
     getRandomInt;
 
@@ -26,11 +21,7 @@ utils = {
     ONE_YEAR_MS:  31536000000,
 
 	//utils functions
-	getFileNames:getFileNames,
-	moment:moment,
-	checkUser:checkUser,
-	filters:filters,
-	postProcess:postProcess,
+
     safeString: function (string, options) {
         options = options || {};
 
