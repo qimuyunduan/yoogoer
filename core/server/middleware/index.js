@@ -6,7 +6,6 @@ var bodyParser       = require('body-parser'),
     path             = require('path'),
     routes           = require('../routes'),
     utils            = require('../utils'),
-	uploadify        = require('uploadify'),
 	uuid             = require('node-uuid'),
 	helmet           = require('helmet'),
 	favicon          = require('serve-favicon'),
@@ -14,7 +13,6 @@ var bodyParser       = require('body-parser'),
 	session          = require('express-session'),
 	sessionStore     = require('connect-redis')(session),
 	client           = require('redis').createClient(),
-    middleware,
     setupMiddleware;
 
 
@@ -78,9 +76,6 @@ setupMiddleware  = function setupMiddleware(App) {
     // Set up API routes
     App.use(routes.apiBaseUri, routes.api());
 
-    // Set up Frontend routes
-    App.use(routes.frontend());
-
     // ### Error handling
     // 404 Handler
     App.use(errors.error404);
@@ -91,4 +86,3 @@ setupMiddleware  = function setupMiddleware(App) {
 
 module.exports = setupMiddleware;
 
-module.exports.middleware = middleware;

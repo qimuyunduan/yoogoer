@@ -5,12 +5,12 @@ var Promise = require('bluebird'),
 	config  = require('./config');
 
 
-function Server(app) {
+function Server(app,options) {
 	this.app = app;
 	this.httpServer = null;
 	this.connections = {};
 	this.connectionId = 0;
-	this.env = process.env.NODE_ENV;
+	this.env  = process.env.NODE_ENV;
 	this.host = config.get(this.env).server.host;
 	this.port = config.get(this.env).server.port;
 	// Expose config module for use externally.
