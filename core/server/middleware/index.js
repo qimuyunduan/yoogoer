@@ -10,6 +10,7 @@ var bodyParser       = require('body-parser'),
 	helmet           = require('helmet'),
 	favicon          = require('serve-favicon'),
 	cookieParser     = require('cookie-parser'),
+	redisSession     = require('node-redis-session'),
 	session          = require('express-session'),
 	sessionStore     = require('connect-redis')(session),
 	client           = require('redis').createClient(),
@@ -21,9 +22,9 @@ setupMiddleware  = function setupMiddleware(App) {
     var logging  = config.logging,
 		contentPath = config.paths.contentPath,
         corePath = config.paths.corePath;
-	//若客户端在15分钟内未与服务器交互,session 将过期并重新登录,否则延长session 的时间15分钟
-	//var sessionStore  = new session.MemoryStore({reapInterval:1000*60*15}),
-		//sessionSecret = uuid.v4()+uuid.v1()+uuid.v4();
+
+
+	// var sessionSecret = uuid.v4()+uuid.v1()+uuid.v4();
 
 	sessionSecret = "fgegsaf";
 
@@ -45,20 +46,21 @@ setupMiddleware  = function setupMiddleware(App) {
 
 	// ### cookie and session
 
-	//App.use(cookieParser());
+	App.use(cookieParser());
+	App.use(redisSession());
 
-	App.use(session({
-		//name:'idoConnectSessId',
-		store:new sessionStore( {
-			host: 'localhost',
-			port: 6379,
-			ttl : 60
-		}),
-		secret: sessionSecret,
-		resave:true,
-		saveUninitialized:true
 
-	}));
+	//App.use(session({
+	//	store:new sessionStore( {
+	//		host: 'localhost',
+	//		port: 6379,
+	//		ttl : 60
+	//	}),
+	//	secret: sessionSecret,
+	//	resave:true,
+	//	saveUninitialized:true
+	//
+	//}));
 
 	App.use(helmet());
 
