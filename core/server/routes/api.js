@@ -3,7 +3,6 @@
 var express     = require('express'),
 	config      = require('../config'),
 	middleware  = require('../middleware'),
-	redisClient = require('redis').createClient(),
 	routes;
 
 

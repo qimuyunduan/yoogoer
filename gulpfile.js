@@ -9,9 +9,9 @@ var      gulp   = require('gulp'),
 	minifyImage = require('gulp-imagemin'),
       watch     = require('gulp-watch'),
 	browserSync = require('browser-sync').create(),
-//      webpack = require('gulp-webpack');
-//       config = require('./webpack.config');
-           rev  = require('gulp-rev'),////- 对文件名加MD5后缀
+      webpack   = require('gulp-webpack'),
+       config   = require('./webpack.config'),
+			rev = require('gulp-rev'),////- 对文件名加MD5后缀
    revCollector = require('gulp-rev-collector'),//- 路径替换
     runSequence = require('run-sequence');//Run a series of dependent gulp tasks in order
 

@@ -51,14 +51,5 @@
     "run-sequence": "^1.1.5",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7"
-  },
-  "greenkeeper": {
-    "ignore": [
-      "bluebird",
-      "glob",
-      "lodash",
-      "nodemailer",
-      "validator"
-    ]
   }
 }

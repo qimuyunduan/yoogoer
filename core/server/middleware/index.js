@@ -13,7 +13,7 @@ var bodyParser       = require('body-parser'),
 	redisSession     = require('node-redis-session'),
 	session          = require('express-session'),
 	sessionStore     = require('connect-redis')(session),
-	client           = require('redis').createClient(),
+	//client           = require('redis').createClient(),
     setupMiddleware;
 
 
@@ -23,10 +23,7 @@ setupMiddleware  = function setupMiddleware(App) {
 		contentPath = config.paths.contentPath,
         corePath = config.paths.corePath;
 
-
-	// var sessionSecret = uuid.v4()+uuid.v1()+uuid.v4();
-
-	sessionSecret = "fgegsaf";
+	var sessionSecret = "fgegsaf";
 
     // (X-Forwarded-Proto header will be checked, if present)
     App.enable('trust proxy');
@@ -47,20 +44,18 @@ setupMiddleware  = function setupMiddleware(App) {
 	// ### cookie and session
 
 	App.use(cookieParser());
-	App.use(redisSession());
+	//App.use(redisSession());
 
 
-	//App.use(session({
-	//	store:new sessionStore( {
-	//		host: 'localhost',
-	//		port: 6379,
-	//		ttl : 60
-	//	}),
-	//	secret: sessionSecret,
-	//	resave:true,
-	//	saveUninitialized:true
-	//
-	//}));
+	App.use(session({
+		store:new sessionStore( {
+			host: "127.0.0.1",
+			port: 6379
+		}),
+		secret: sessionSecret,
+		resave:false,
+		saveUninitialized:false
+	}));
 
 	App.use(helmet());
 
