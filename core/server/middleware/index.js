@@ -14,7 +14,7 @@ var bodyParser       = require('body-parser'),
 	redisSession     = require('node-redis-session'),
 	session          = require('express-session'),
 	sessionStore     = require('connect-redis')(session),
-	//client           = require('redis').createClient(),
+	//client         = require('redis').createClient(),
     setupMiddleware;
 
 

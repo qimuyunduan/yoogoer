@@ -23,7 +23,7 @@ config = {
 			fromAddress:'idoadmin@126.com'
         },
 		database: {
-			url:'mongodb://localhost:27017/test',
+			url:'mongodb://localhost:27017/yoogoer',
 			options:{
 				db: { native_parser: true },
 				server: { poolSize: 5 },
@@ -91,7 +91,7 @@ config = {
         server: {
             // Host to be passed to node's `net.Server#listen()`
             host: '127.0.0.1',
-            // Port to be passed to node's `net.Server#listen()`, for iisnode set this to `process.env.PORT`
+
             port: '8080'
         },
         // #### Paths
