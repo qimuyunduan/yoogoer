@@ -4,6 +4,7 @@ var express     = require('express'),
     compress    = require('compression'),
     Promise     = require('bluebird'),
 	path        = require('path'),
+	models      = require('./models'),
     middleware  = require('./middleware'),
     Server      = require('./app_server');
 
@@ -13,6 +14,10 @@ function init(options) {
     var app = express();
 
     return Promise.resolve().then(function () {
+
+		//init models
+		models.init();
+
 
         // enabled gzip compression by default
 		app.use(compress());

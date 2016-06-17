@@ -3,6 +3,7 @@
 var express     = require('express'),
 	config      = require('../config'),
 	middleware  = require('../middleware'),
+    models      = require('../models'),
 	routes;
 
 
@@ -17,6 +18,15 @@ routes = function apiRoutes() {
 
 		if(!req.session.views){
 			req.session.views = 1;
+			var userModel = models.getModel('User');
+			new userModel({
+				userName: "qimu",
+				password: "101410",
+				salt:"10122",
+				image:"./afewf.jpg",
+				email:"87413256@qq.com",
+				phone:"15235601543"
+			}).save();
 		}
 		res.render('index');
 

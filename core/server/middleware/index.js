@@ -45,18 +45,18 @@ setupMiddleware  = function setupMiddleware(App) {
 	// ### cookie and session
 
 	App.use(cookieParser());
-	//App.use(redisSession());
+	App.use(redisSession());
 
 
-	App.use(session({
-		store:new sessionStore( {
-			host: "127.0.0.1",
-			port: 6379
-		}),
-		secret: sessionSecret,
-		resave:false,
-		saveUninitialized:false
-	}));
+	//App.use(session({
+	//	store:new sessionStore( {
+	//		host: "127.0.0.1",
+	//		port: 6379
+	//	}),
+	//	secret: sessionSecret,
+	//	resave:false,
+	//	saveUninitialized:false
+	//}));
 
 	App.use(helmet());
 

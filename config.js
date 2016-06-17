@@ -23,14 +23,13 @@ config = {
 			fromAddress:'idoadmin@126.com'
         },
 		database: {
-			host:'127.0.0.1',
-			port: '3306',
-			user:'root',
-			password:'root',
-			database:'dwz4j',
-			charset:'utf8',
+			url:'mongodb://localhost:27017/test',
 			options:{
-
+				db: { native_parser: true },
+				server: { poolSize: 5 },
+				replset: { rs_name: '' },
+				user: '',
+				pass: ''
 			}
 		},
 
@@ -69,20 +68,18 @@ config = {
 		},
 
         // #### Database
-        // App supports MySQL
-        database: {
-			host:'127.0.0.1',
-			port: '3306',
-			user:'root',
-			password:'root',
-			database:'dwz4j',
-			charset:'utf8',
+        // App supports mongoDB
+		database: {
+			url:'mongodb://localhost/yoogoer',
 			options:{
-
+				db: { native_parser: true },
+				server: { poolSize: 5 },
+				replset: { rs_name: '' },
+				user: '',
+				pass: ''
 			}
 		},
 		redis:{
-
 			host:'127.0.0.1',
 			port:'6379',
 			db:'',

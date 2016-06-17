@@ -1,6 +1,7 @@
 var Promise = require('bluebird'),
 	chalk   = require('chalk'),
 	fs      = require('fs'),
+	mongoose= require('mongoose'),
 	errors  = require('./errors'),
 	config  = require('./config');
 
@@ -110,6 +111,9 @@ Server.prototype.closeConnections = function () {
 			socket.destroy();
 		}
 	});
+	mongoose.connection.close(function () {
+		console.log('Mongoose disconnected through app termination');
+		process.exit(0);   });
 };
 
 /**

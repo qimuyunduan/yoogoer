@@ -11,7 +11,7 @@ var path          = require('path'),
 	corePath      = path.resolve(appRoot, 'core/');
 
 function ConfigManager(config) {
-	this._config = {};
+	this.config = {};
 
 	if (config && _.isObject(config)) {
 		this.set(config);
@@ -27,18 +27,17 @@ function ConfigManager(config) {
 ConfigManager.prototype.set = function (config) {
 
 
-	_.merge(this._config, config);
+	_.merge(this.config, config);
 
-	this._config.paths = this._config.paths || {};
+	this.config.paths = this.config.paths || {};
 
-	// Allow contentPath to be over-written by passed in config object
-	// Otherwise default to default content path location
-	contentPath = this._config.paths.contentPath || path.resolve(appRoot, 'content');
 
-	_.merge(this._config, {
+	contentPath = this.config.paths.contentPath || path.resolve(appRoot, 'content');
+
+	_.merge(this.config, {
 		paths: {
 			appRoot:          appRoot,
-			config:           this._config.paths.config || path.join(appRoot, 'config.js'),
+			config:           this.config.paths.config || path.join(appRoot, 'config.js'),
 			corePath:         corePath,
 			contentPath:      contentPath,
 			imagesPath:       path.resolve(contentPath, 'images'),
@@ -57,7 +56,7 @@ ConfigManager.prototype.set = function (config) {
 
 	});
 
-	_.assign(this, this._config);
+	_.assign(this, this.config);
 
 };
 
@@ -67,9 +66,9 @@ ConfigManager.prototype.set = function (config) {
  */
 ConfigManager.prototype.get = function (key) {
 	if(key){
-		return this._config[key];
+		return this.config[key];
 	}
-	return this._config;
+	return this.config;
 };
 
 

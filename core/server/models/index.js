@@ -9,18 +9,54 @@
  *
  */
 
-var config   = require('../config'),
-	fs       = require('fs'),
-	Promise  = require('bluebird'),
-	mongoose = require('mongoose');
+var _             = require('lodash'),
+	configManager = require('../config'),
+	Promise       = require('bluebird'),
+	fs            = Promise.promisifyAll(require("fs")),
+	mongoose      = require('mongoose'),
+	DBConnection;
 
-var DBConnection =  mongoose.createConnection();
+
+
+
+function initConnection(){
+
+	DBConnection = mongoose.createConnection(configManager.config.development.database.url);
+	DBConnection.on('connected', function () {
+		console.log('Mongoose connected to server');
+	});
+	DBConnection.on('error', function (err) {
+		console.log('Mongoose connection error: ' + err);
+	});
+	DBConnection.on('disconnected', function () {
+		console.log('Mongoose disconnected');
+	});
+}
 
 
 module.exports = {
 
-	DB:DBConnection,
-	init:function(){
+	init: function () {
 
+		initConnection();
+
+		fs.readdirAsync(__dirname).then(function (files) {
+
+			_.forEach(files, function (file) {
+				if (file !== 'index.js') {
+
+					require('./' + file)(mongoose)
+				}
+			});
+
+		}).catch(function (err) {
+			console.log(err);
+		});
+	},
+	getModel:function(modelName){
+		if(DBConnection.model(modelName)){
+			console.log(DBConnection.model(modelName));
+			return DBConnection.model(modelName);
+		}
 	}
 };
