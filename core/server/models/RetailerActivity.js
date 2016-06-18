@@ -8,6 +8,9 @@
  * @version
  *
  */
+
+var validators = require('../utils/validators');
+
 /*********************************************************
  				RetailerActivity SCHEMA
  ********************************************************/
@@ -17,8 +20,8 @@ module.exports = function (mongoose) {
 	var Schema = mongoose.Schema;
 	// attributes
 	var RetailerActivitySchema = new Schema({
-		title: {type:String, required: true},
-		totalCount:{type:Number},
+		title: {type:String, required: true,validate:validators.lengthValidator(1,15)},
+		totalCount:{type:Number,require:true},
 		hasSale:{type:Number,required:true},
 		truePrice: {type: Number, required: true},
 		bargainPrice: {type: Number, required: true},
@@ -26,6 +29,8 @@ module.exports = function (mongoose) {
 		endDay:{type:Date,required:true},
 		createdOn: {type: Date, default: Date.now}
 	});
-
+	RetailerActivitySchema.methods.getLeftCount = function () {
+		return (this.totalCount-this.hasSale);
+	};
 	mongoose.model('RetailerActivity',RetailerActivitySchema);
 };

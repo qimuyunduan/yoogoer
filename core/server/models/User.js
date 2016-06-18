@@ -9,20 +9,24 @@
  *
  */
 
+var validators = require('../utils/validators');
+
+
 /*********************************************************
  						USER SCHEMA
  ********************************************************/
+
 
 module.exports = function (mongoose) {
 	var  Schema = mongoose.Schema;
 	// attributes
 	var userScheMa = new Schema({
-		userName: {firstName:String,lastName:String},
+		userName: {type:String,required:true,validate:validators.lengthValidator(6,20)},
 		password: {type:String,required:true},
 		salt:{type:String,required:true},
 		image:{type:String,required:true},
-		email:{type:String,unique:true},
-		phone:{type:String,required:true},
+		email:{type:String,unique:true,validate:validators.emailValidator},
+		phone:{type:String,required:true,unique:true,validate:validators.cellphoneValidator},
 		createdOn:{type:Date,default:Date.now}
 	});
 

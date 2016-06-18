@@ -9,6 +9,7 @@
  *
  */
 
+
 /*********************************************************
  					ChargeRecord SCHEMA
  ********************************************************/
@@ -22,7 +23,7 @@ module.exports = function (mongoose) {
 		chargeDay: {type: Date, required: true},
 		chargeNum: {type: Number, required: true},
 		moneyLeft:{type:  Number,required:true},
-		type:{default:0,required:true},
+		type:{default:0,required:true,enum:[0,1]},
 		createdOn: {type: Date, default: Date.now}
 	});
 
