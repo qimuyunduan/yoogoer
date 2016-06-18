@@ -24,7 +24,7 @@ module.exports = function (mongoose) {
 		orderTime: {type: String, required: true},
 		orderTitle: {type: String, required: true},
 		orderMoney: {type: Number, required: true},
-		orderStatus: {enum:[0,1,2],required:true},
+		orderStatus: {type:Number,enum:[0,1,2],required:true},
 		createdOn: {type: Date, default: Date.now}
 	});
 

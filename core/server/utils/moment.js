@@ -50,7 +50,7 @@ function getLocalDateAndTime(){
 
 
 function getAfterDays(days){
-	return moment().add('days',days).format('YYYY年MM月DD日');
+	return moment().add(days,'days').format('YYYY年MM月DD日');
 }
 
 module.exports = {

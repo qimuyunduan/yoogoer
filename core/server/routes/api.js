@@ -4,6 +4,7 @@ var express     = require('express'),
 	config      = require('../config'),
 	middleware  = require('../middleware'),
     models      = require('../models'),
+	moment = require('../utils').moment,
 	routes;
 
 
@@ -16,17 +17,92 @@ routes = function apiRoutes() {
 
 	router.get("/", function (req, res) {
 
+
+
+
+//		var activity = models.getModel('Activity'),
+//			historyRecord = models.getModel('HistoryOrder'),
+//			chargeRecord  = models.getModel('ChargeRecord'),
+//			activityDetail = models.getModel('ActivityDetail'),
+//			retailerActivity = models.getModel('RetailerActivity');
+//
+//
+//		for(var i=0;i<20;i++){
+//
+//			//init activity model
+//			new activity({
+//				company: 'company'+i,
+//				startDay: moment.localDate,
+//				endDay: moment.afterDays(7),
+//				image: "XXX",
+//				title: '促销活动尽在company'+i,
+//				info: "赶紧参加,活动的奖品,先到先得..."
+//			}).save();
+////init activityDetail model
+//			new historyRecord({
+//				orderImage: 'XXX',
+//				orderTime: moment.localDate,
+//				orderTitle: "get medicine from drug store",
+//				orderMoney: 15*i+2*i-5,
+//				orderStatus: i%3
+//			}).save();
+//
+////init chargeRecord model
+//			new chargeRecord({
+//				title: "剩余额度",
+//				chargeDay: moment.localDate,
+//				chargeNum: 2*i+62,
+//				moneyLeft:5*(33-i),
+//				type:0
+//			}).save();
+////init historyOrder model
+//			new activityDetail({
+//				truePrice: 20*i,
+//				bargainPrice:10*i,
+//				retailerInfo: "最新优惠信息,尽在yoogoer",
+//				packageInfo: {packageName: "体检", time: 1,price:220,extraInfo:["实惠",'精确']},
+//				usage:{validTime:"2015-5-8至2016-5-6",notInclude:"2015-9-4至2015-10-30",useTime:"XXXXX",bookInfo:"预定电话",usageRules:["注意使用时间",'注意使用方法']}
+//			}).save();
+//
+////init retailerActivity model
+//
+//			new retailerActivity({
+//
+//				title: "参与活动的商家",
+//				totalCount:'总共有xxx家商店',
+//				hasSale:"已经销售xxx件商品",
+//				truePrice: '真实价格',
+//				bargainPrice: '折扣价格',
+//				startDay:moment.localDate,
+//				endDay:moment.afterDays(3)
+//			}).save();
+//
+//
+//
+//		}
+
+
+
 //		if(!req.session.views){
 //			req.session.views = 1;
 //
 //			//CURD
 //
 //			//查询 得到userModel
-//			var userModel = models.getModel('User');
-//			//get all users
-//			userModel.find(function(err,users){
-//				console.log(users);
-//			});
+			var userModel = models.getModel('User');
+			new userModel({
+				userName: "qimu",
+				password: "101410",
+				salt:"10122",
+				image:"XXX",
+				email:"8467842@qq.com",
+				phone:"12434545455"
+
+			 }).save(function(err,user){
+				console.log(user);
+			 });
+
+
 //
 //			userModel.find({name:""},function(err,user){
 //				console.log(user);
