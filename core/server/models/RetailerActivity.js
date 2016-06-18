@@ -17,10 +17,13 @@ module.exports = function (mongoose) {
 	var Schema = mongoose.Schema;
 	// attributes
 	var RetailerActivitySchema = new Schema({
-		title: {type:String, required: true,default:"剩余额度"},
-		chargeDay: {type: Date, required: true},
-		chargeNum: {type: Number, required: true},
-		moneyLeft:{type:  Number,required:true},
+		title: {type:String, required: true},
+		totalCount:{type:Number},
+		hasSale:{type:Number,required:true},
+		truePrice: {type: Number, required: true},
+		bargainPrice: {type: Number, required: true},
+		startDay:{type:Date,required:true},
+		endDay:{type:Date,required:true},
 		createdOn: {type: Date, default: Date.now}
 	});
 
