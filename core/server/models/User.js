@@ -9,7 +9,7 @@
  *
  */
 
-var validators = require('../utils/validators');
+var validators = require('../utils').validators;
 
 
 /*********************************************************

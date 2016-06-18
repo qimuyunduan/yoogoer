@@ -9,7 +9,7 @@
  *
  */
 
-var validators = require('../utils/validators');
+var validators = require('../utils').validators;
 
 /*********************************************************
  				RetailerActivity SCHEMA
@@ -25,8 +25,8 @@ module.exports = function (mongoose) {
 		hasSale:{type:Number,required:true},
 		truePrice: {type: Number, required: true},
 		bargainPrice: {type: Number, required: true},
-		startDay:{type:Date,required:true},
-		endDay:{type:Date,required:true},
+		startDay:{type:String,required:true},
+		endDay:{type:String,required:true},
 		createdOn: {type: Date, default: Date.now}
 	});
 	RetailerActivitySchema.methods.getLeftCount = function () {

@@ -7,7 +7,7 @@ config = {
     // ### Production
 
     production:    {
-        url: 'http://ido-qimuyunduan.rhcloud.com',
+        url: '',
         mail: {
 			config: {
 				host: "smtp.126.com",
@@ -34,7 +34,7 @@ config = {
 		},
 
         server: {
-            host: 'http://ido-qimuyunduan.rhcloud.com',
+            host: '',
             port: '2368'
         },
 		redis:{
@@ -50,7 +50,7 @@ config = {
 
     development: {
 
-        url: 'http://localhost:3000',
+        url: 'http://localhost:8080',
 
 		mail: {
 			config: {

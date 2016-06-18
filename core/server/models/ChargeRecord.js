@@ -20,7 +20,7 @@ module.exports = function (mongoose) {
 	// attributes
 	var chargeRecordScheMa = new Schema({
 		title: {type:String, required: true,default:"剩余额度"},
-		chargeDay: {type: Date, required: true},
+		chargeDay: {type: String, required: true},
 		chargeNum: {type: Number, required: true},
 		moneyLeft:{type:  Number,required:true},
 		type:{default:0,required:true,enum:[0,1]},

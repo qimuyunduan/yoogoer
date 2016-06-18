@@ -1,4 +1,7 @@
 var _            = require('lodash'),
+
+	moment       = require('./moment'),
+	validators   = require('./validators'),
     utils,
     getRandomInt;
 
@@ -21,7 +24,8 @@ utils = {
     ONE_YEAR_MS:  31536000000,
 
 	//utils functions
-
+	moment:moment,
+	validators:validators,
     safeString: function (string, options) {
         options = options || {};
 
