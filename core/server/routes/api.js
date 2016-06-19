@@ -2,7 +2,6 @@
 
 var express     = require('express'),
 	config      = require('../config'),
-	middleware  = require('../middleware'),
     models      = require('../models'),
 	routes;
 
@@ -116,39 +115,56 @@ routes = function apiRoutes() {
 		.get(function(req,res){
 			var activity = models.getModel('Activity');
 			activity.find(function(err,activities){
-				console.log(activities);
-				res.send(activities);
-				//res.json({activities:activities});
+
+				res.json({res:activities});
+			});
+		});
+
+
+	router.route('/consumeOrder')
+		.get(function(req,res){
+			var orderPerson = req.query;
+			var historyOrder = models.getModel('HistoryOrder');
+			historyOrder.find(function(err,orders){
+				res.json({res:orders});
+			})
+		})
+		.post(function(req,res){
+			res.end();
+		});
+	router.route('/activityDetail')
+		.get(function(req,res){
+			var activityID = req.query;
+			var detailActivityModel = models.getModel('ActivityDetail');
+			detailActivityModel.find(function(err,detailActivity){
+				res.json({res:detailActivity});
+			});
+
+		})
+		.post(function(req,res){
+
+		});
+
+	router.route('/rechargeRecord')
+		.get(function(req,res){
+			var personName = req.query;
+			var chargeRecordModel = models.getModel('ChargeRecord');
+			chargeRecordModel.find(function(err,record){
+				res.json({res:record});
 			});
 		})
 		.post(function(req,res){
 
 		});
 
-	router.route()
+
+	router.route('/retailerActivities')
 		.get(function(req,res){
+			var retailerActivities = models.getModel('RetailerActivity');
+			retailerActivities.find(function(err,results){
+				res.json({res:results});
 
-		})
-		.post(function(req,res){
-
-		});
-	router.route()
-		.get(function(req,res){
-
-		})
-		.post(function(req,res){
-
-		});
-	router.route()
-		.get(function(req,res){
-
-		})
-		.post(function(req,res){
-
-		});
-	router.route()
-		.get(function(req,res){
-
+			});
 		})
 		.post(function(req,res){
 

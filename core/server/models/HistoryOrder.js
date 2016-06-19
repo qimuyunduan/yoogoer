@@ -19,6 +19,7 @@ module.exports = function (mongoose) {
 	var Schema = mongoose.Schema;
 	// attributes
 	var historyOrderScheMa = new Schema({
+		orderPersonName:{type:String,required:true},
 		orderImage: {type:String, required: true},
 		orderTime: {type: String, required: true},
 		orderTitle: {type: String, required: true},

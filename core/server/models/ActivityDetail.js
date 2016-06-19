@@ -18,7 +18,7 @@ module.exports = function (mongoose) {
 	var Schema = mongoose.Schema;
 	// attributes
 	var activityDetailScheMa = new Schema({
-
+		activity:{type:Schema.Types.ObjectId,ref:"Activity"},//设置关联关系
 		truePrice: {type:Number, required: true},
 		bargainPrice:{type:Number,require:true},
 		retailerInfo: {retailerName: String, address: String,contactPhone:String},

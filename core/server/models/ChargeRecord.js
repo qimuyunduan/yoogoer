@@ -24,6 +24,7 @@ module.exports = function (mongoose) {
 		chargeNum: {type: Number, required: true},
 		moneyLeft:{type:  Number,required:true},
 		type:{type:Number,default:0,required:true,enum:[0,1]},
+		user:{type:Schema.Types.ObjectId,ref:"User"},
 		createdOn: {type: Date, default: Date.now}
 	});
 

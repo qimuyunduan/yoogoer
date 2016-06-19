@@ -27,6 +27,7 @@ module.exports = function (mongoose) {
 		image:{type:String,required:true},
 		email:{type:String,unique:true},
 		phone:{type:String,required:true,unique:true},
+		chargeRecord:{type:Schema.Types.ObjectId,ref:"ChargeRecord"},
 		createdOn:{type:Date,default:Date.now}
 	});
 

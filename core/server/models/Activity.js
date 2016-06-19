@@ -25,6 +25,7 @@ module.exports = function (mongoose) {
 		image: {type: String, required: true},
 		title: {type: String, unique: true,required:true},
 		info: {type: String, required: true},
+		detail:{type:Schema.Types.ObjectId,ref:"ActivityDetail"},//设置与activitydetail的关联关系
 		createdOn: {type: Date, default: Date.now}
 	});
 
