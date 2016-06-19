@@ -20,7 +20,7 @@ module.exports = function (mongoose) {
 	var Schema = mongoose.Schema;
 	// attributes
 	var RetailerActivitySchema = new Schema({
-		title: {type:String, required: true,validate:validators.lengthValidator(1,15)},
+		title: {type:String, required: true},
 		totalCount:{type:Number,require:true},
 		hasSale:{type:Number,required:true},
 		truePrice: {type: Number, required: true},

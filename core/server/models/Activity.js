@@ -20,11 +20,11 @@ module.exports = function (mongoose) {
 	var Schema = mongoose.Schema;
 	// attributes
 	var activityScheMa = new Schema({
-		company: {type:String, required: true,validate:validators.lengthValidator(1,15)},
+		company: {type:String, required: true},
 		startDay: {type: String, required: true},
 		endDay: {type: String, required: true},
 		image: {type: String, required: true},
-		title: {type: String, unique: true,validate:validators.lengthValidator(1,15)},
+		title: {type: String, unique: true},
 		info: {type: String, required: true},
 		createdOn: {type: Date, default: Date.now}
 	});

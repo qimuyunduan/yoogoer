@@ -20,13 +20,14 @@ var validators = require('../utils').validators;
 module.exports = function (mongoose) {
 	var  Schema = mongoose.Schema;
 	// attributes
+
 	var userScheMa = new Schema({
-		userName: {type:String,required:true,validate:validators.lengthValidator(6,20)},
+		userName: {type:String,required:true},
 		password: {type:String,required:true},
 		salt:{type:String,required:true},
 		image:{type:String,required:true},
-		email:{type:String,unique:true,validate:validators.emailValidator},
-		phone:{type:String,required:true,unique:true,validate:validators.cellphoneValidator},
+		email:{type:String,unique:true},
+		phone:{type:String,required:true,unique:true},
 		createdOn:{type:Date,default:Date.now}
 	});
 
