@@ -20,8 +20,10 @@ var _             = require('lodash'),
 
 
 function initConnection(){
+
 	//程序中只有一个数据库时,使用mongoose.connnect()就行了
 	//若有多个数据库,使用mongoose.createConnnection()可以得到一个所在数据库的链接句柄,进而使用该句柄获取该database下的model
+
 	DBConnection = mongoose.createConnection(configManager.config.development.database.url);
 
 	DBConnection.on('connected', function () {
@@ -45,6 +47,7 @@ module.exports = {
 		fs.readdirAsync(__dirname).then(function (files) {
 
 			_.forEach(files, function (file) {
+
 				if (file !== 'index.js') {
 
 					require('./' + file)(mongoose)

@@ -18,7 +18,6 @@ function init(options) {
 		//init models
 		models.init();
 
-
         // enabled gzip compression by default
 		app.use(compress());
 

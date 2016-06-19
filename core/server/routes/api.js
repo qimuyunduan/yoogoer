@@ -16,7 +16,6 @@ routes = function apiRoutes() {
 
 	router.get("/", function (req, res) {
 
-
 //		if(!req.session.views){
 //			req.session.views = 1;
 //
