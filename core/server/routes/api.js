@@ -6,7 +6,6 @@ var express     = require('express'),
 	routes;
 
 
-
 routes = function apiRoutes() {
 
 	var router = express.Router();
@@ -33,8 +32,30 @@ routes = function apiRoutes() {
 //			 }).save(function(err,user){
 //				console.log(user);
 //			 });
+		var user = models.getModel('User');
+		var historyOrder = models.getModel('HistoryOrder');
 
+		//historyOrder.findOne({orderTitle: 'first order'})
+		//	//populate 实现连表查询,结果是historyOrder,通过orderUser属性可以获取相应的User
+		//	.populate('orderUser', 'userName password')
+		//	.exec(function(err, doc) {
+		//		console.log(doc.orderUser.userName);
+		//	});
+		//historyOrder.findOne({orderTitle: 'first order'})
+		//	//populate 实现连表查询,结果是historyOrder,通过orderUser属性可以获取相应的User
+		//	.populate({path:'orderUser',select:{userName:1,password:1}})
+		//	.exec(function(err, doc) {
+		//		console.log(doc.orderUser.userName);
+		//	});
 
+		//historyOrder.findOne({orderTitle:'first order'},function(err,order){
+		//	user.findOne({userName:"qimu"},function(err,user){
+		//		user.historyOrder.push(order._id);
+		//		user.save(function(err,user){
+		//			console.log("保存成功...");
+		//		});
+		//	});
+		//});
 //
 //			userModel.find({name:""},function(err,user){
 //				console.log(user);
@@ -96,6 +117,9 @@ routes = function apiRoutes() {
 //
 //			//other methods
 //			// findByIdAndRomove()  findByIdAndUpdate()
+
+
+
 //
 //		}
 		res.render('index');
