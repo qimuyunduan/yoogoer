@@ -9,7 +9,6 @@
  *
  */
 
-var validators = require('../utils').validators;
 
 /*********************************************************
 					 Activity SCHEMA
@@ -24,7 +23,7 @@ module.exports = function (mongoose) {
 		startDay: {type: String, required: true},
 		endDay: {type: String, required: true},
 		image: {type: String, required: true},
-		title: {type: String, unique: true},
+		title: {type: String, unique: true,required:true},
 		info: {type: String, required: true},
 		createdOn: {type: Date, default: Date.now}
 	});

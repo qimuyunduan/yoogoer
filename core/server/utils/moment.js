@@ -38,6 +38,7 @@ function getDateAndTime(){
 
 
 function getLocalDateAndTime(){
+
 	var date = getLocalDate();   // 2016-5-4
 	var weekday = getWeekday(); //星期三
 

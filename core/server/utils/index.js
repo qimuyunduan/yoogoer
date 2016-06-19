@@ -25,7 +25,6 @@ utils = {
 
 	//utils functions
 	moment:moment,
-	validators:validators,
     safeString: function (string, options) {
         options = options || {};
 
