@@ -3,6 +3,7 @@
 var express     = require('express'),
 	config      = require('../config'),
     models      = require('../models'),
+	preloadData = require('../utils/preloadData'),
 	routes;
 
 
@@ -14,6 +15,9 @@ routes = function apiRoutes() {
 
 	router.get("/", function (req, res) {
 
+
+
+		//preloadData();
 //		if(!req.session.views){
 //			req.session.views = 1;
 //
@@ -32,8 +36,8 @@ routes = function apiRoutes() {
 //			 }).save(function(err,user){
 //				console.log(user);
 //			 });
-		var user = models.getModel('User');
-		var historyOrder = models.getModel('HistoryOrder');
+//		var user = models.getModel('User');
+//		var historyOrder = models.getModel('HistoryOrder');
 
 		//historyOrder.findOne({orderTitle: 'first order'})
 		//	//populate 实现连表查询,结果是historyOrder,通过orderUser属性可以获取相应的User
@@ -84,8 +88,6 @@ routes = function apiRoutes() {
 //			//update第一个参数是查询条件，第二个参数是更新的对象，但不能更新主键，这就是为什么要删除主键的原因。
 //　　         //当然这样的更新很麻烦，可以使用$set属性来配置，这样也不用先查询，如果更新的数据比较少，可用性还是很好的：
 //            //  userModel.update({_id:userId},{$set:{name:'XXX'}},function(err){});
-//
-//
 //			//新建  方法1
 //			//new userModel({
 //			// name:"",
@@ -117,9 +119,6 @@ routes = function apiRoutes() {
 //
 //			//other methods
 //			// findByIdAndRomove()  findByIdAndUpdate()
-
-
-
 //
 //		}
 		res.render('index');
