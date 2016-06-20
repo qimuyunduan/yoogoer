@@ -20,14 +20,22 @@ module.exports = function (mongoose) {
 	var Schema = mongoose.Schema;
 	// attributes
 	var RetailerActivitySchema = new Schema({
-		title: {type:String, required: true},
-		totalCount:{type:Number,require:true},
-		hasSale:{type:Number,required:true},
-		truePrice: {type: Number, required: true},
-		bargainPrice: {type: Number, required: true},
-		startDay:{type:String,required:true},
-		endDay:{type:String,required:true},
-		createdOn: {type: Date, default: Date.now}
+
+		comName:{type:String,required:true},
+		comImage:{type:String,required:true},
+		activities:[
+			{
+				title: {type:String, required: true},
+				totalCount:{type:Number,require:true},
+				hasSale:{type:Number,required:true},
+				truePrice: {type: Number, required: true},
+				bargainPrice: {type: Number, required: true},
+				startDay:{type:String,required:true},
+				endDay:{type:String,required:true},
+				createdOn: {type: Date, default: Date.now}
+			}
+		]
+
 	});
 	RetailerActivitySchema.methods.getLeftCount = function () {
 		return (this.totalCount-this.hasSale);

@@ -119,8 +119,34 @@ routes = function apiRoutes() {
 //
 //			//other methods
 //			// findByIdAndRomove()  findByIdAndUpdate()
+
+
+//		Model.distinct
 //
-//		}
+//		查询符合条件的文档并返回根据键分组的结果。
+//
+//		Model.distinct(field, conditions, callback);
+//		Model.where
+//
+//		当查询比较复杂时，用 where：
+//
+//		Model
+//		.where('age').gte(25)
+//		.where('tags').in(['movie', 'music', 'art'])
+//		.select('name', 'age', 'tags')
+//		.skip(20)
+//		.limit(10)
+//		.asc('age')
+//		.slaveOk()
+//		.hint({ age: 1, name: 1 })
+//		.run(callback);
+//		Model.$where
+//
+//		有时我们需要在 mongodb 中使用 javascript 表达式进行查询，这时可以用 find({$where : javascript}) 方式，$where 是一种快捷方式，并支持链式调用查询。
+//
+//		Model.$where('this.firstname === this.lastname').exec(callback)
+
+
 		res.render('index');
 
 	});
@@ -134,12 +160,14 @@ routes = function apiRoutes() {
 		.post(function (req, res) {
 
 		});
+
+
 	router.route('/latestActivities')
 		.get(function(req,res){
 			var activity = models.getModel('Activity');
-			activity.find(function(err,activities){
-
-				res.json({res:activities});
+			//按时间升序  排除createdOn __v字段
+			activity.find().limit(15).sort({_id:1}).select("-createdOn -__v").exec(function(err,result){
+				res.json({res:result});
 			});
 		});
 
@@ -184,9 +212,8 @@ routes = function apiRoutes() {
 	router.route('/retailerActivities')
 		.get(function(req,res){
 			var retailerActivities = models.getModel('RetailerActivity');
-			retailerActivities.find(function(err,results){
-				res.json({res:results});
-
+			retailerActivities.find().limit(15).sort({_id:1}).select("-__v").exec(function(err,result){
+				res.json({res:result});
 			});
 		})
 		.post(function(req,res){
