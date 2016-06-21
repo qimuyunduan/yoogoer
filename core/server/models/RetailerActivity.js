@@ -37,8 +37,8 @@ module.exports = function (mongoose) {
 		]
 
 	});
-	RetailerActivitySchema.methods.getLeftCount = function () {
-		return (this.totalCount-this.hasSale);
+	RetailerActivitySchema.methods.getActivityCount = function () {
+		return this.activities.count;
 	};
 	mongoose.model('RetailerActivity',RetailerActivitySchema);
 };

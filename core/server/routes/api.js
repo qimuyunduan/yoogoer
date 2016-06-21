@@ -174,21 +174,21 @@ routes = function apiRoutes() {
 
 	router.route('/consumeOrder')
 		.get(function(req,res){
-			var orderPerson = req.query;
+			var orderPerson = req.query.orderPerson;
 			var historyOrder = models.getModel('HistoryOrder');
-			historyOrder.find(function(err,orders){
-				res.json({res:orders});
-			})
+			historyOrder.find({orderUser:orderPerson}).limit(30).sort({_id:1}).select("-createdOn -__v -orderUser").exec(function(err,result){
+				res.json({res:result});
+			});
 		})
 		.post(function(req,res){
 			res.end();
 		});
 	router.route('/activityDetail')
 		.get(function(req,res){
-			var activityID = req.query;
+			var activityID = req.query.activityID;
 			var detailActivityModel = models.getModel('ActivityDetail');
-			detailActivityModel.find(function(err,detailActivity){
-				res.json({res:detailActivity});
+			detailActivityModel.find({activity:activityID}).select("-createdOn -__v -activity").exec(function(err,result){
+				res.json({res:result});
 			});
 
 		})
@@ -198,10 +198,10 @@ routes = function apiRoutes() {
 
 	router.route('/rechargeRecord')
 		.get(function(req,res){
-			var personName = req.query;
+			var personName = req.query.chargePerson;
 			var chargeRecordModel = models.getModel('ChargeRecord');
-			chargeRecordModel.find(function(err,record){
-				res.json({res:record});
+			chargeRecordModel.find({user:personName}).limit(30).sort({_id:1}).select("-createdOn -__v -user").exec(function(err,result){
+				res.json({res:result});
 			});
 		})
 		.post(function(req,res){
