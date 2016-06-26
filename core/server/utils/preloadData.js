@@ -14,7 +14,7 @@ module.exports = function(){
 		activityDetail = models.getModel("ActivityDetail"),
 		chargeRecord = models.getModel("ChargeRecord"),
 		historyOrder = models.getModel("HistoryOrder"),
-		retailerActivity = models.getModel("RetailerActivity"),
+		retailerActivityGroup = models.getModel("RetailerActivityGroup"),
 		user = models.getModel("User");
 	var userid;
 	user.findOne({userName:"qimu"},function(err,user){
@@ -67,7 +67,8 @@ module.exports = function(){
 		//								user.findOne({userName:"qimu"},function(err,user){
 		//									user.historyOrder.push(order._id);
 		//									user.save(function(err){
-												new retailerActivity({
+
+													new retailerActivityGroup({
 													comName:"company "+i,
 													comImage:"XXX",
 													activities:[{

@@ -18,27 +18,32 @@
 module.exports = function (mongoose) {
 
 	var Schema = mongoose.Schema;
-	// attributes
+
 	var RetailerActivitySchema = new Schema({
+		title: {type:String, required: true},
+		totalCount:{type:Number,require:true},
+		hasSale:{type:Number,required:true},
+		truePrice: {type: Number, required: true},
+		bargainPrice: {type: Number, required: true},
+		startDay:{type:String,required:true},
+		endDay:{type:String,required:true},
+		createdOn: {type: Date, default: Date.now}
+	});
+
+	// attributes
+	var RetailerActivityGroupSchema = new Schema({
 
 		comName:{type:String,required:true},
 		comImage:{type:String,required:true},
-		activities:[
-			{
-				title: {type:String, required: true},
-				totalCount:{type:Number,require:true},
-				hasSale:{type:Number,required:true},
-				truePrice: {type: Number, required: true},
-				bargainPrice: {type: Number, required: true},
-				startDay:{type:String,required:true},
-				endDay:{type:String,required:true},
-				createdOn: {type: Date, default: Date.now}
-			}
-		]
+		activities:[RetailerActivitySchema]
+
 
 	});
-	RetailerActivitySchema.methods.getActivityCount = function () {
+
+
+	RetailerActivityGroupSchema.methods.getActivityCount = function () {
 		return this.activities.count;
 	};
-	mongoose.model('RetailerActivity',RetailerActivitySchema);
+
+	mongoose.model('RetailerActivityGroup',RetailerActivityGroupSchema);
 };
