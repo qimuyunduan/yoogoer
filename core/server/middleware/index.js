@@ -66,8 +66,8 @@ setupMiddleware  = function setupMiddleware(App) {
 
 	App.use('/shared', express.static(path.join(corePath, '/shared')));
 	App.use('/res', express.static(contentPath));
-	App.use('/res/data', express.static(path.join(contentPath, '/data')));
-	App.use('/res/images', express.static(path.join(contentPath, '/images')));
+	App.use('/data', express.static(path.join(contentPath, '/data')));
+	App.use('/images', express.static(path.join(contentPath, '/images')));
 
     // ### Routing
     // Set up API routes

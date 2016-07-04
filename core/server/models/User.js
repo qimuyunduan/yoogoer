@@ -24,7 +24,7 @@ module.exports = function (mongoose) {
 		userName: {type:String,required:true},
 		password: {type:String,required:true},
 		salt:{type:String,required:true},
-		image:{type:String,required:true},
+		image:{type:String,default:"treatment.png"},
 		email:{type:String,unique:true},
 		phone:{type:String,required:true,unique:true},
 		chargeRecord:[{type:Schema.Types.ObjectId,ref:"ChargeRecord"}],

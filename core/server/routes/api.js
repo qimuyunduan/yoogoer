@@ -167,7 +167,7 @@ routes = function apiRoutes() {
 			var activity = models.getModel('Activity');
 			//按时间升序  排除createdOn __v字段
 			activity.find().limit(15).sort({_id:1}).select("-createdOn -__v").exec(function(err,result){
-				res.json({res:result});
+				res.json(result);
 			});
 		});
 
@@ -177,7 +177,7 @@ routes = function apiRoutes() {
 			var orderPerson = req.query.orderPerson;
 			var historyOrder = models.getModel('HistoryOrder');
 			historyOrder.find({orderUser:orderPerson}).limit(30).sort({_id:1}).select("-createdOn -__v -orderUser").exec(function(err,result){
-				res.json({res:result});
+				res.json(result);
 			});
 		})
 		.post(function(req,res){
@@ -188,7 +188,7 @@ routes = function apiRoutes() {
 			var activityID = req.query.activityID;
 			var detailActivityModel = models.getModel('ActivityDetail');
 			detailActivityModel.find({activity:activityID}).select("-createdOn -__v -activity").exec(function(err,result){
-				res.json({res:result});
+				res.json(result);
 			});
 
 		})
@@ -201,7 +201,7 @@ routes = function apiRoutes() {
 			var personName = req.query.chargePerson;
 			var chargeRecordModel = models.getModel('ChargeRecord');
 			chargeRecordModel.find({user:personName}).limit(30).sort({_id:1}).select("-createdOn -__v -user").exec(function(err,result){
-				res.json({res:result});
+				res.json(result);
 			});
 		})
 		.post(function(req,res){
@@ -213,13 +213,41 @@ routes = function apiRoutes() {
 		.get(function(req,res){
 			var retailerActivities = models.getModel('RetailerActivity');
 			retailerActivities.find().limit(15).sort({_id:1}).select("-__v").exec(function(err,result){
-				res.json({res:result});
+				res.json(result);
 			});
 		})
 		.post(function(req,res){
 
 		});
 
+	router.route('/login')
+		.post(function(req,res){
+			var user = models.getModel("User");
+			var loginUser = req.body.userName;
+			var loginPass = req.body.userPass;
+			user.find({userName:loginUser,password:loginPass},function(users){
+				if (users.count == 1) {
+
+					res.json({userID:users[0]._id,result:"200"});
+				}else {
+
+					res.json({result:"404"});
+				}
+			});
+		});
+
+
+	router.route("signUp")
+		.post(function (req,res) {
+			var user = models.getModel("User");
+			var body = req.body;
+			user.create({userName:body.userName, password:body.password,salt:body.password,phone:body.userName},function(err,user){
+				if (!err) {
+					res.json({result:"200"});
+				}
+				console.log(user)
+			});
+		});
 
 	return router;
 };
