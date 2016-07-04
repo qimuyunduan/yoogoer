@@ -249,6 +249,12 @@ routes = function apiRoutes() {
 			});
 		});
 
+
+	router.route("/user")
+		.post(function(req,res){
+			console.log(req.body);
+		});
+
 	return router;
 };
 
