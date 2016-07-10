@@ -68,30 +68,30 @@ module.exports = function(){
 		//									user.historyOrder.push(order._id);
 		//									user.save(function(err){
 
-													new retailerActivityGroup({
-													comName:"company "+i,
-													comImage:"XXX",
-													activities:[{
-														title: "零售商",
-														totalCount:200,
-														hasSale:102,
-														truePrice: 520,
-														bargainPrice: 380,
-														startDay:"2015-6-8",
-														endDay:"2016-2-8"
-													},{
-														title: "零售商 01",
-														totalCount:200,
-														hasSale:102,
-														truePrice: 520,
-														bargainPrice: 380,
-														startDay:"2015-6-8",
-														endDay:"2016-2-8"
-													}]
+												//	new retailerActivityGroup({
+												//	comName:"company "+i,
+												//	comImage:"XXX",
+												//	activities:[{
+												//		title: "零售商",
+												//		totalCount:200,
+												//		hasSale:102,
+												//		truePrice: 520,
+												//		bargainPrice: 380,
+												//		startDay:"2015-6-8",
+												//		endDay:"2016-2-8"
+												//	},{
+												//		title: "零售商 01",
+												//		totalCount:200,
+												//		hasSale:102,
+												//		truePrice: 520,
+												//		bargainPrice: 380,
+												//		startDay:"2015-6-8",
+												//		endDay:"2016-2-8"
+												//	}]
+												//
+												//}).save(function(err,retailer){
 
-												}).save(function(err,retailer){
-
-												});
+												//});
 		//									});
 		//
 		//								});
