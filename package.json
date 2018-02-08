@@ -20,7 +20,7 @@
     "fs-extra": "0.26.5",
     "glob": "5.0.15",
     "hbs": "^4.0.0",
-    "helmet": "^2.1.0",
+    "helmet": "^2.3.0",
     "html-to-text": "1.6.0",
     "jsonpath": "0.2.2",
     "lodash": "3.10.1",
